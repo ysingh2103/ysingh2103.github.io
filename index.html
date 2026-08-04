@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Yuvraj Singh — Technical Support Specialist</title>
+<meta name="description" content="Technical Support Specialist in Toronto. Windows & Linux, IIS & Tomcat, SQL Server, networking, monitoring, and container troubleshooting across 15+ client environments." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,400..800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#101828;
+  --ink-soft:#475467;
+  --paper:#FAFAF8;
+  --card:#FFFFFF;
+  --line:#E4E7EC;
+  --term-bg:#0C1220;
+  --term-line:#1D2939;
+  --ok:#12B76A;
+  --warn:#F79009;
+  --accent:#1D4ED8;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --disp:'Archivo',sans-serif;
+  --body:'Inter',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.6;font-size:16px}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1020px;margin:0 auto;padding:0 24px}
+
+/* ---------- nav ---------- */
+nav{position:sticky;top:0;background:rgba(250,250,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:50}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px}
+.nav-name{font-family:var(--mono);font-weight:600;font-size:.95rem;color:var(--ink)}
+.nav-name .prompt{color:var(--ok)}
+.nav-links{display:flex;gap:22px;font-size:.9rem;font-weight:500}
+.nav-links a{color:var(--ink-soft)}
+.nav-links a:hover{color:var(--ink);text-decoration:none}
+
+/* ---------- hero ---------- */
+header{padding:72px 0 56px}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ok);font-weight:600;margin-bottom:14px}
+h1{font-family:var(--disp);font-weight:800;font-stretch:82%;font-size:clamp(2.2rem,5vw,3.3rem);line-height:1.06;letter-spacing:-.01em;margin-bottom:18px}
+.hero-sub{color:var(--ink-soft);font-size:1.05rem;max-width:44ch;margin-bottom:26px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:.92rem;padding:11px 20px;border-radius:8px;border:1px solid transparent;transition:transform .12s ease}
+.btn:hover{text-decoration:none;transform:translateY(-1px)}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-ghost{border-color:var(--line);color:var(--ink);background:var(--card)}
+.btn svg{width:16px;height:16px;fill:currentColor}
+
+/* ---------- terminal ---------- */
+.term{background:var(--term-bg);border-radius:12px;border:1px solid var(--term-line);box-shadow:0 24px 60px -24px rgba(16,24,40,.45);overflow:hidden}
+.term-bar{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--term-line)}
+.dot{width:11px;height:11px;border-radius:50%}
+.dot:nth-child(1){background:#F97066}.dot:nth-child(2){background:#FDB022}.dot:nth-child(3){background:#32D583}
+.term-title{margin-left:auto;font-family:var(--mono);font-size:.72rem;color:#667085}
+.term-body{padding:18px 20px 22px;font-family:var(--mono);font-size:.82rem;line-height:1.75;color:#D0D5DD;min-height:280px}
+.t-prompt{color:#32D583}
+.t-cmd{color:#F2F4F7}
+.t-dim{color:#667085}
+.t-ok{color:#32D583;font-weight:600}
+.t-line{opacity:0;animation:reveal .01s forwards}
+.cursor{display:inline-block;width:8px;height:15px;background:#32D583;vertical-align:-2px;animation:blink 1s step-end infinite}
+@keyframes reveal{to{opacity:1}}
+@keyframes blink{50%{opacity:0}}
+@media (prefers-reduced-motion:reduce){
+  .t-line{animation:none;opacity:1}
+  .cursor{animation:none}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- sections ---------- */
+section{padding:64px 0;border-top:1px solid var(--line)}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:34px}
+.sec-tag{font-family:var(--mono);font-size:.78rem;color:var(--ok);font-weight:600}
+h2{font-family:var(--disp);font-weight:700;font-stretch:85%;font-size:1.7rem;letter-spacing:-.01em}
+
+/* ---------- about ---------- */
+.about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:44px}
+.about-grid p{color:var(--ink-soft);margin-bottom:16px}
+.about-grid p strong{color:var(--ink)}
+.fact-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;height:fit-content}
+.fact{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--line);font-size:.9rem}
+.fact:last-child{border-bottom:0}
+.fact dt{color:var(--ink-soft)}
+.fact dd{font-weight:600;text-align:right}
+
+/* ---------- skills ---------- */
+.skill-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.skill-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px}
+.skill-card h3{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:.85rem;font-weight:600;margin-bottom:12px}
+.status{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px rgba(18,183,106,.15);flex:none}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-size:.8rem;font-weight:500;color:var(--ink-soft);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:4px 10px}
+
+/* ---------- experience ---------- */
+.job{display:grid;grid-template-columns:170px 1fr;gap:28px;padding:26px 0;border-bottom:1px solid var(--line)}
+.job:last-child{border-bottom:0}
+.job-when{font-family:var(--mono);font-size:.8rem;color:var(--ink-soft);padding-top:4px}
+.job h3{font-family:var(--disp);font-weight:700;font-size:1.12rem;margin-bottom:2px}
+.job .org{color:var(--ink-soft);font-size:.92rem;margin-bottom:12px}
+.job ul{list-style:none}
+.job li{position:relative;padding-left:20px;margin-bottom:9px;color:var(--ink-soft);font-size:.94rem}
+.job li::before{content:"▸";position:absolute;left:0;color:var(--ok);font-size:.8rem;top:2px}
+
+/* ---------- projects ---------- */
+.proj-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:28px;margin-bottom:18px}
+.proj-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:8px;flex-wrap:wrap}
+.proj-card h3{font-family:var(--disp);font-weight:700;font-size:1.15rem}
+.proj-stack{font-family:var(--mono);font-size:.72rem;color:var(--ink-soft)}
+.proj-card > p{color:var(--ink-soft);font-size:.94rem;margin-bottom:14px}
+.incident{border-left:3px solid var(--ok);background:var(--paper);border-radius:0 8px 8px 0;padding:14px 18px;margin-top:12px}
+.incident h4{font-family:var(--mono);font-size:.78rem;color:var(--ink);margin-bottom:5px}
+.incident h4 .sev{color:var(--warn)}
+.incident p{font-size:.88rem;color:var(--ink-soft)}
+
+/* ---------- contact ---------- */
+.contact-card{background:var(--term-bg);border-radius:14px;padding:44px 40px;text-align:center;color:#fff}
+.contact-card h2{color:#fff;margin-bottom:10px}
+.contact-card p{color:#98A2B3;max-width:52ch;margin:0 auto 26px}
+.contact-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-light{background:#fff;color:var(--ink)}
+.btn-outline{border:1px solid var(--term-line);color:#E4E7EC}
+.btn-outline:hover{border-color:#475467}
+
+footer{padding:34px 0;text-align:center;font-family:var(--mono);font-size:.75rem;color:var(--ink-soft)}
+
+@media (max-width:820px){
+  .hero-grid,.about-grid{grid-template-columns:1fr}
+  .skill-grid{grid-template-columns:1fr}
+  .job{grid-template-columns:1fr;gap:6px}
+  header{padding:44px 0 40px}
+  section{padding:48px 0}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <span class="nav-name"><span class="prompt">➜</span> yuvraj-singh</span>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Lab &amp; Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Toronto, ON · Technical Support</p>
+      <h1>Most IT people support one environment. I support fifteen.</h1>
+      <p class="hero-sub">Technical Support Specialist at a Canadian MSP — diagnosing escalated issues across Windows, Linux, networks, and web platforms for 350+ users at 15+ client organizations.</p>
+      <div class="hero-cta">
+        <a class="btn btn-dark" href="#projects">See my troubleshooting work</a>
+        <a class="btn btn-ghost" href="https://linkedin.com/in/y-singh-gill" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-ghost" href="https://github.com/ysingh2103" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+
+    <div class="term" aria-label="Terminal showing a service health check">
+      <div class="term-bar" aria-hidden="true">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="term-title">yuvraj@toronto: ~/skills</span>
+      </div>
+      <div class="term-body" id="terminal">
+        <div class="t-line" style="animation-delay:.3s"><span class="t-prompt">$</span> <span class="t-cmd">sudo ./service-check.sh</span></div>
+        <div class="t-line" style="animation-delay:.9s"><span class="t-dim">===== Skill Status Check =====</span></div>
+        <div class="t-line" style="animation-delay:1.2s"><span class="t-ok">[OK]</span>   windows &amp; linux support</div>
+        <div class="t-line" style="animation-delay:1.45s"><span class="t-ok">[OK]</span>   networking · dns · tcp/ip · firewalls</div>
+        <div class="t-line" style="animation-delay:1.7s"><span class="t-ok">[OK]</span>   iis · tomcat · tls/ssl</div>
+        <div class="t-line" style="animation-delay:1.95s"><span class="t-ok">[OK]</span>   sql-server · postgresql</div>
+        <div class="t-line" style="animation-delay:2.2s"><span class="t-ok">[OK]</span>   prometheus · grafana monitoring</div>
+        <div class="t-line" style="animation-delay:2.45s"><span class="t-ok">[OK]</span>   docker · kubernetes (k3s)</div>
+        <div class="t-line" style="animation-delay:2.7s"><span class="t-ok">[OK]</span>   powershell · python · bash</div>
+        <div class="t-line" style="animation-delay:3.1s"><span class="t-dim">All services healthy. Ready to deploy.</span></div>
+        <div class="t-line" style="animation-delay:3.5s"><span class="t-prompt">$</span> <span class="cursor" aria-hidden="true"></span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-tag">## about</span><h2>Diagnose fast. Document everything.</h2></div>
+    <div class="about-grid">
+      <div>
+        <p>Working at a Canadian MSP means every day is different — one hour I'm investigating an EDR alert, the next I'm tracing a connectivity issue across a firewall, the next I'm reproducing a defect with a development team. Supporting <strong>350+ users across 15+ organizations</strong> has taught me to read logs before I guess, form a hypothesis, test it, and never assume two environments behave the same way.</p>
+        <p>My core work spans <strong>technical support, identity &amp; security, and infrastructure</strong>: Windows and Linux troubleshooting, Microsoft IIS and TLS/SSL certificate management, SQL Server reporting, and network administration — while acting as the key point of contact between clients and cross-functional development teams.</p>
+        <p>Outside work hours, I run a self-hosted lab where I break things on purpose — and diagnose them from the logs. Everything in the Lab &amp; Projects section below is real, documented, hands-on work.</p>
+      </div>
+      <dl class="fact-card">
+        <div class="fact"><dt>Role</dt><dd>Technical Support Specialist</dd></div>
+        <div class="fact"><dt>Company</dt><dd>IIMSWISS Corp (MSP)</dd></div>
+        <div class="fact"><dt>Users supported</dt><dd>350+</dd></div>
+        <div class="fact"><dt>Client orgs</dt><dd>15+</dd></div>
+        <div class="fact"><dt>KB articles authored</dt><dd>15+</dd></div>
+        <div class="fact"><dt>Education</dt><dd>Adv. Diploma, Seneca</dd></div>
+        <div class="fact"><dt>Certification</dt><dd>AZ-900 (exp. Sept 2026)</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-tag">## skills</span><h2>Everything reporting [OK]</h2></div>
+    <div class="skill-grid">
+      <div class="skill-card">
+        <h3><span class="status" aria-hidden="true"></span>operating-systems</h3>
+        <div class="chips"><span class="chip">Windows OS</span><span class="chip">Linux (Ubuntu Server)</span><span class="chip">macOS</span><span class="chip">Log Analysis</span><span class="chip">systemd</span></div>
+      </div>
+      <div class="skill-card">
+        <h3><span class="status" aria-hidden="true"></span>web-and-app-servers</h3>
+        <div class="chips"><span class="chip">Microsoft IIS</span><span class="chip">Apache Tomcat</span><span class="chip">nginx</span><span class="chip">TLS/SSL Certificates</span><span class="chip">Mail Server Admin</span></div>
+      </div>
+      <div class="skill-card">
+        <h3><span class="status" aria-hidden="true"></span>databases</h3>
+        <div class="chips"><span class="chip">Microsoft SQL Server</span><span class="chip">PostgreSQL</span><span class="chip">SQL Querying &amp; Reporting</span><span class="chip">Auth Config (pg_hba)</span></div>
+      </div>
+      <div class="skill-card">
+        <h3><span class="status" aria-hidden="true"></span>networking</h3>
+        <div class="chips"><span class="chip">DNS</span><span class="chip">TCP/IP</span><span class="chip">VLANs</span><span class="chip">VPNs</span><span class="chip">Proxies</span><span class="chip">Load Balancers</span><span class="chip">Fortinet</span><span class="chip">WatchGuard</span><span class="chip">pfSense</span></div>
+      </div>
+      <div class="skill-card">
+        <h3><span class="status" aria-hidden="true"></span>monitoring-and-containers</h3>
+        <div class="chips"><span class="chip">Prometheus</span><span class="chip">Grafana</span><span class="chip">Datto RMM/EDR</span><span class="chip">Microsoft Defender</span><span class="chip">Docker</span><span class="chip">Kubernetes (k3s)</span></div>
+      </div>
+      <div class="skill-card">
+        <h3><span class="status" aria-hidden="true"></span>scripting-and-itsm</h3>
+        <div class="chips"><span class="chip">PowerShell</span><span class="chip">Python</span><span class="chip">Bash</span><span class="chip">ServiceNow</span><span class="chip">Jira</span><span class="chip">Azure DevOps</span><span class="chip">KB Authoring</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-tag">## experience</span><h2>Where I've done the work</h2></div>
+
+    <div class="job">
+      <div class="job-when">Apr 2025 — Present</div>
+      <div>
+        <h3>Technical Support Specialist</h3>
+        <p class="org">IIMSWISS Corp · Toronto, ON</p>
+        <ul>
+          <li>Deliver end-to-end technical support for 350+ users across 15+ client organizations, isolating, reproducing, and resolving escalated issues within SLA targets.</li>
+          <li>Troubleshoot software across Windows and Linux systems, applying log analysis and hypothesis-driven troubleshooting for first-call resolution.</li>
+          <li>Configure Microsoft IIS sites and provision TLS/SSL certificates, supporting secure web application availability for client-facing platforms.</li>
+          <li>Query Microsoft SQL Server for record verification and reporting on the SwissShop platform; act as key point of contact between clients and cross-functional development teams, reproducing software defects through to resolution.</li>
+          <li>Maintain network infrastructure — DNS, TCP/IP, VLANs, VPNs, and firewalls — and monitor alerts via Datto RMM/EDR and Microsoft Defender.</li>
+          <li>Author 15+ knowledge base articles and SOPs in ServiceNow, reducing repeat support requests across 3 business units.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-when">Jan 2024 — Dec 2024</div>
+      <div>
+        <h3>IT Service Desk Representative</h3>
+        <p class="org">Seneca Polytechnic · Toronto, ON</p>
+        <ul>
+          <li>Resolved 1,000+ Tier 1/2 incidents across hardware, software, and network issues, sustaining 97% classroom uptime across four campuses.</li>
+          <li>Deployed and reimaged 500+ endpoints with OS imaging, driver troubleshooting, and post-deployment quality checks.</li>
+          <li>Managed Active Directory accounts, MFA resets, and application provisioning for seamless onboarding and offboarding.</li>
+          <li>Trained 50+ faculty and authored IT documentation, reducing recurring support requests by 30%.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-tag">## lab-and-projects</span><h2>I break things on purpose — then diagnose them</h2></div>
+
+    <div class="proj-card">
+      <div class="proj-top">
+        <h3>Self-Hosted Monitoring &amp; Container Lab</h3>
+        <span class="proj-stack">linux · docker · k3s · prometheus · grafana · postgresql · bash</span>
+      </div>
+      <p>A VMware ESXi–hosted Ubuntu Server environment built from scratch: containerized workloads with Docker, orchestrated with Kubernetes (k3s), monitored with a self-built Prometheus + Grafana stack with live CPU/memory/disk dashboards, backed by PostgreSQL and automated Bash health-check scripts with exit-code-based status reporting.</p>
+
+      <div class="incident">
+        <h4><span class="sev">INCIDENT</span> · Kubernetes resource-starvation cascade</h4>
+        <p>Noticed abnormal restart counts (41+) on CoreDNS during a routine health check. With Kubernetes events already expired, correlated k3s service logs showing multi-second database writes and API timeouts — traced the root cause to memory exhaustion cascading into liveness-probe failures. Fixed by resizing the VM; verified stability by monitoring restart counts post-fix.</p>
+      </div>
+      <div class="incident">
+        <h4><span class="sev">INCIDENT</span> · No route to network</h4>
+        <p>Fresh Ubuntu VM had an IP but no connectivity. Ruled out DNS, traced a missing default route to a hardcoded static IP in the installer-generated netplan config on the wrong subnet — plus a file-permission issue silently blocking the fix. Corrected to DHCP, validated the gateway, and documented the incident as a runbook.</p>
+      </div>
+      <div class="incident">
+        <h4><span class="sev">INCIDENT</span> · Config failures across three layers</h4>
+        <p>Deliberately broke and diagnosed nginx configs on bare metal and inside Docker containers, PostgreSQL authentication rules (pg_hba.conf), and Prometheus YAML — using each tool's own validator (nginx&nbsp;-t, promtool, kubectl describe) cross-checked against logs. Same hypothesis-driven method, three different environment layers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-card">
+      <h2>Let's talk</h2>
+      <p>Open to Technical Support, IT Support/Operations, and QA roles in the GTA. If you're hiring for someone who reads the logs before guessing — I'd love to hear from you.</p>
+      <div class="contact-links">
+        <a class="btn btn-light" href="mailto:ys.gill21@gmail.com">ys.gill21@gmail.com</a>
+        <a class="btn btn-outline" href="https://linkedin.com/in/y-singh-gill" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-outline" href="https://github.com/ysingh2103" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">yuvraj-singh · toronto, on · exit code 0</div>
+</footer>
+
+</body>
+</html>
