@@ -134,15 +134,30 @@ h2{font-family:var(--disp);font-weight:700;font-stretch:85%;font-size:1.7rem;let
 .job li::before{content:"▸";position:absolute;left:0;color:var(--ok);font-size:.8rem;top:2px}
 
 /* ---------- projects ---------- */
-.proj-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:28px;margin-bottom:18px}
+.proj-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:28px}
 .proj-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:8px;flex-wrap:wrap}
 .proj-card h3{font-family:var(--disp);font-weight:700;font-size:1.15rem}
-.proj-stack{font-family:var(--mono);font-size:.72rem;color:var(--ink-soft)}
+.repo-link{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.78rem;font-weight:600;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:7px 14px;background:var(--chip-bg);flex:none}
+.repo-link:hover{text-decoration:none;border-color:var(--ink-soft)}
+.repo-link svg{width:15px;height:15px;fill:currentColor}
+.proj-stack{font-family:var(--mono);font-size:.72rem;color:var(--ink-soft);display:block;margin-bottom:12px}
 .proj-card > p{color:var(--ink-soft);font-size:.94rem;margin-bottom:14px}
 .incident{border-left:3px solid var(--ok);background:var(--chip-bg);border-radius:0 8px 8px 0;padding:14px 18px;margin-top:12px}
 .incident h4{font-family:var(--mono);font-size:.78rem;color:var(--ink);margin-bottom:5px}
 .incident h4 .sev{color:var(--warn)}
 .incident p{font-size:.88rem;color:var(--ink-soft)}
+
+/* ---------- project carousel ---------- */
+.car-viewport{overflow:hidden}
+.car-track{display:flex;transition:transform .5s ease}
+.car-slide{flex:0 0 100%;min-width:0;padding:2px}
+.car-nav{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:20px}
+.car-btn{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;font-size:1.05rem;line-height:1}
+.car-btn:hover{border-color:var(--ink-soft)}
+.car-dots{display:flex;gap:9px}
+.car-dot{width:9px;height:9px;border-radius:50%;border:1px solid var(--ink-soft);background:transparent;cursor:pointer;padding:0}
+.car-dot[aria-current="true"]{background:var(--ok);border-color:var(--ok)}
+@media (prefers-reduced-motion:reduce){.car-track{transition:none}}
 
 /* ---------- contact ---------- */
 .contact-card{background:var(--term-bg);border:1px solid var(--term-line);border-radius:14px;padding:44px 40px;text-align:center;color:#fff}
@@ -167,6 +182,7 @@ footer{padding:34px 0;text-align:center;font-family:var(--mono);font-size:.75rem
   section{padding:48px 0}
   .term-body{font-size:.72rem;min-height:0}
   .contact-card{padding:34px 22px}
+  .proj-card{padding:22px 18px}
 }
 </style>
 </head>
@@ -216,16 +232,16 @@ footer{padding:34px 0;text-align:center;font-family:var(--mono);font-size:.75rem
         <div class="t-line" style="animation-delay:1.28s"><span class="t-ok">[OK]</span>   Networking · DNS · TCP/IP · Firewalls</div>
         <div class="t-line" style="animation-delay:1.46s"><span class="t-ok">[OK]</span>   IIS · Tomcat · Nginx · TLS/SSL</div>
         <div class="t-line" style="animation-delay:1.64s"><span class="t-ok">[OK]</span>   SQL Server · PostgreSQL</div>
-        <div class="t-line" style="animation-delay:1.82s"><span class="t-ok">[OK]</span>   Entra ID · Active Directory · MFA</div>
-        <div class="t-line" style="animation-delay:2.0s"><span class="t-ok">[OK]</span>   VMware ESXi · Azure · Intune · SCCM</div>
-        <div class="t-line" style="animation-delay:2.18s"><span class="t-ok">[OK]</span>   Prometheus · Grafana · Datto EDR</div>
-        <div class="t-line" style="animation-delay:2.36s"><span class="t-ok">[OK]</span>   Docker · Kubernetes (k3s)</div>
-        <div class="t-line" style="animation-delay:2.54s"><span class="t-ok">[OK]</span>   PowerShell · Python · Bash</div>
-        <div class="t-line" style="animation-delay:2.72s"><span class="t-ok">[OK]</span>   ServiceNow · Jira · Azure DevOps</div>
-        <div class="t-line" style="animation-delay:2.9s"><span class="t-ok">[OK]</span>   Isolating &amp; reproducing escalated issues</div>
-        <div class="t-line" style="animation-delay:3.08s"><span class="t-ok">[OK]</span>   Log analysis · troubleshooting</div>
+        <div class="t-line" style="animation-delay:1.82s"><span class="t-ok">[OK]</span>   Postfix · Dovecot · Mail Servers</div>
+        <div class="t-line" style="animation-delay:2.0s"><span class="t-ok">[OK]</span>   Entra ID · Active Directory · MFA</div>
+        <div class="t-line" style="animation-delay:2.18s"><span class="t-ok">[OK]</span>   VMware ESXi · Azure · Intune · SCCM</div>
+        <div class="t-line" style="animation-delay:2.36s"><span class="t-ok">[OK]</span>   Prometheus · Grafana · Datto EDR</div>
+        <div class="t-line" style="animation-delay:2.54s"><span class="t-ok">[OK]</span>   Docker · Kubernetes (k3s)</div>
+        <div class="t-line" style="animation-delay:2.72s"><span class="t-ok">[OK]</span>   PowerShell · Python · Bash</div>
+        <div class="t-line" style="animation-delay:2.9s"><span class="t-ok">[OK]</span>   ServiceNow · Jira · Azure DevOps</div>
+        <div class="t-line" style="animation-delay:3.08s"><span class="t-ok">[OK]</span>   Isolating &amp; reproducing escalated issues</div>
         <div class="t-line" style="animation-delay:3.26s"><span class="t-ok">[OK]</span>   SLA · client relationships · first-call resolution</div>
-        <div class="t-line" style="animation-delay:3.66s"><span class="t-dim">13 checks passed. All services healthy.</span></div>
+        <div class="t-line" style="animation-delay:3.66s"><span class="t-dim">14 checks passed. All services healthy.</span></div>
         <div class="t-line" style="animation-delay:4.0s"><span class="t-prompt">$</span> <span class="cursor" aria-hidden="true"></span></div>
       </div>
     </div>
@@ -237,10 +253,11 @@ footer{padding:34px 0;text-align:center;font-family:var(--mono);font-size:.75rem
     <div class="sec-head"><span class="sec-tag">## about</span><h2>Diagnose fast. Document everything.</h2></div>
     <div class="about-grid">
       <div>
-        <p>Working at a Canadian MSP means every day is different one hour I'm investigating an EDR alert, the next I'm tracing a connectivity issue across a firewall, the next I'm reproducing a defect with a development team. Supporting <strong>350+ users across 15+ organizations</strong> has taught me to read logs before I guess, form a hypothesis, test it, and never assume two environments behave the same way.</p>
+        <p>Working at a Canadian MSP means every day is different  one hour I'm investigating an EDR alert, the next I'm tracing a connectivity issue across a firewall, the next I'm reproducing a defect with a development team. Supporting <strong>350+ users across 15+ organizations</strong> has taught me to read logs before I guess, form a hypothesis, test it, and never assume two environments behave the same way.</p>
         <p>My core work spans <strong>technical support, identity &amp; security, and infrastructure</strong>: Windows and Linux troubleshooting, Microsoft IIS and TLS/SSL certificate management, SQL Server reporting, and network administration  while acting as the key point of contact between clients and cross-functional development teams.</p>
         <p>Outside work hours, I run a self-hosted lab where I break things on purpose and diagnose them from the logs. Everything in the Lab &amp; Projects section below is real, documented, hands-on work.</p>
-        <p>When I'm not staring at terminals, I'm at the gym, on a mission to find who serves the best coffee in town, or driving endless roads with a camera rolling for short vlogs. Long-term, I want to become a mentor  sharing my experience and the story of how far I've come with people starting the same journey.</p>      </div>
+        <p>When I'm not staring at terminals, I'm at the gym, on a mission to find who serves the best coffee in town, or driving endless roads with a camera rolling for short vlogs. Long-term, I want to become a mentor  sharing my experience and the story of how far I've come with people starting the same journey.</p>
+      </div>
       <dl class="fact-card">
         <div class="fact"><dt>Role</dt><dd>Technical Support Specialist</dd></div>
         <div class="fact"><dt>Company</dt><dd>IIMSWISS Corp (MSP)</dd></div>
@@ -260,11 +277,11 @@ footer{padding:34px 0;text-align:center;font-family:var(--mono);font-size:.75rem
     <div class="skill-grid">
       <div class="skill-card">
         <h3><span class="status" aria-hidden="true"></span>operating-systems</h3>
-        <div class="chips"><span class="chip">Windows OS</span><span class="chip">Linux (Ubuntu Server)</span><span class="chip">macOS</span><span class="chip">Log Analysis</span><span class="chip">systemd</span></div>
+        <div class="chips"><span class="chip">Windows OS</span><span class="chip">Windows Server 2022</span><span class="chip">Linux (Ubuntu Server)</span><span class="chip">macOS</span><span class="chip">Log Analysis</span><span class="chip">systemd</span></div>
       </div>
       <div class="skill-card">
-        <h3><span class="status" aria-hidden="true"></span>web-and-app-servers</h3>
-        <div class="chips"><span class="chip">Microsoft IIS</span><span class="chip">Apache Tomcat</span><span class="chip">nginx</span><span class="chip">TLS/SSL Certificates</span><span class="chip">Mail Server Admin</span></div>
+        <h3><span class="status" aria-hidden="true"></span>web-app-and-mail-servers</h3>
+        <div class="chips"><span class="chip">Microsoft IIS</span><span class="chip">Apache Tomcat</span><span class="chip">nginx</span><span class="chip">TLS/SSL Certificates</span><span class="chip">Postfix</span><span class="chip">Dovecot</span></div>
       </div>
       <div class="skill-card">
         <h3><span class="status" aria-hidden="true"></span>databases</h3>
@@ -291,7 +308,7 @@ footer{padding:34px 0;text-align:center;font-family:var(--mono);font-size:.75rem
     <div class="sec-head"><span class="sec-tag">## experience</span><h2>Where I've done the work</h2></div>
 
     <div class="job">
-      <div class="job-when">Apr 2025 — Present</div>
+      <div class="job-when">Apr 2025  Present</div>
       <div>
         <h3>Technical Support Specialist</h3>
         <p class="org">IIMSWISS Corp · Toronto, ON</p>
@@ -300,14 +317,14 @@ footer{padding:34px 0;text-align:center;font-family:var(--mono);font-size:.75rem
           <li>Troubleshoot software across Windows and Linux systems, applying log analysis and hypothesis-driven troubleshooting for first-call resolution.</li>
           <li>Configure Microsoft IIS sites and provision TLS/SSL certificates, supporting secure web application availability for client-facing platforms.</li>
           <li>Query Microsoft SQL Server for record verification and reporting on the SwissShop platform; act as key point of contact between clients and cross-functional development teams, reproducing software defects through to resolution.</li>
-          <li>Maintain network infrastructure  DNS, TCP/IP, VLANs, VPNs, and firewalls — and monitor alerts via Datto RMM/EDR and Microsoft Defender.</li>
+          <li>Maintain network infrastructure  DNS, TCP/IP, VLANs, VPNs, and firewalls  and monitor alerts via Datto RMM/EDR and Microsoft Defender.</li>
           <li>Author 15+ knowledge base articles and SOPs in ServiceNow, reducing repeat support requests across 3 business units.</li>
         </ul>
       </div>
     </div>
 
     <div class="job">
-      <div class="job-when">Jan 2024 — Dec 2024</div>
+      <div class="job-when">Jan 2024  Dec 2024</div>
       <div>
         <h3>IT Service Desk Representative</h3>
         <p class="org">Seneca Polytechnic · Toronto, ON</p>
@@ -326,30 +343,73 @@ footer{padding:34px 0;text-align:center;font-family:var(--mono);font-size:.75rem
   <div class="wrap">
     <div class="sec-head"><span class="sec-tag">## lab-and-projects</span><h2>I break things on purpose just to diagnose them</h2></div>
 
-   <div class="proj-card">
-      <div class="proj-top">
-        <h3>Self-Hosted Monitoring &amp; Container Lab</h3>
-        <a class="repo-link" href="https://github.com/ysingh2103/Infra-lab" target="_blank" rel="noopener">
-          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-          View repo
-        </a>
-      </div>
-      <span class="proj-stack">linux · docker · k3s · prometheus · grafana · postgresql · bash</span>
-      </div>
-      <p>A VMware ESXi–hosted Ubuntu Server environment built from scratch: containerized workloads with Docker, orchestrated with Kubernetes (k3s), monitored with a self-built Prometheus + Grafana stack with live CPU/memory/disk dashboards, backed by PostgreSQL and automated Bash health-check scripts with exit-code-based status reporting.</p>
+    <div class="car-viewport">
+      <div class="car-track" id="carTrack">
 
-      <div class="incident">
-        <h4><span class="sev">INCIDENT</span> · Kubernetes resource-starvation cascade</h4>
-        <p>Noticed abnormal restart counts (41+) on CoreDNS during a routine health check. With Kubernetes events already expired, correlated k3s service logs showing multi-second database writes and API timeouts — traced the root cause to memory exhaustion cascading into liveness-probe failures. Fixed by resizing the VM; verified stability by monitoring restart counts post-fix.</p>
+        <div class="car-slide">
+          <div class="proj-card">
+            <div class="proj-top">
+              <h3>Self-Hosted Monitoring &amp; Container Lab</h3>
+              <a class="repo-link" href="https://github.com/ysingh2103/Infra-lab" target="_blank" rel="noopener">
+                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+                View repo
+              </a>
+            </div>
+            <span class="proj-stack">linux · docker · k3s · prometheus · grafana · postgresql · bash</span>
+            <p>A VMware ESXi–hosted Ubuntu Server environment built from scratch: containerized workloads with Docker, orchestrated with Kubernetes (k3s), monitored with a self-built Prometheus + Grafana stack with live CPU/memory/disk dashboards, backed by PostgreSQL and automated Bash health-check scripts with exit-code-based status reporting.</p>
+
+            <div class="incident">
+              <h4><span class="sev">INCIDENT</span> · Kubernetes resource-starvation cascade</h4>
+              <p>Noticed abnormal restart counts (41+) on CoreDNS during a routine health check. With Kubernetes events already expired, correlated k3s service logs showing multi-second database writes and API timeouts  traced the root cause to memory exhaustion cascading into liveness-probe failures. Fixed by resizing the VM; verified stability by monitoring restart counts post-fix.</p>
+            </div>
+            <div class="incident">
+              <h4><span class="sev">INCIDENT</span> · No route to network</h4>
+              <p>Fresh Ubuntu VM had an IP but no connectivity. Ruled out DNS, traced a missing default route to a hardcoded static IP in the installer-generated netplan config on the wrong subnet  plus a file-permission issue silently blocking the fix. Corrected to DHCP, validated the gateway, and documented the incident as a runbook.</p>
+            </div>
+            <div class="incident">
+              <h4><span class="sev">INCIDENT</span> · Config failures across three layers</h4>
+              <p>Deliberately broke and diagnosed nginx configs on bare metal and inside Docker containers, PostgreSQL authentication rules (pg_hba.conf), and Prometheus YAML  using each tool's own validator (nginx&nbsp;-t, promtool, kubectl describe) cross-checked against logs. Same hypothesis-driven method, three different environment layers.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="car-slide">
+          <div class="proj-card">
+            <div class="proj-top">
+              <h3>Application Servers, Mail &amp; Windows Server Lab</h3>
+              <a class="repo-link" href="https://github.com/ysingh2103/Infra-lab" target="_blank" rel="noopener">
+                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+                View repo
+              </a>
+            </div>
+            <span class="proj-stack">tomcat · iis · postfix · dovecot · windows server 2022 · active directory</span>
+            <p>Extension of the same lab into application servers, mail, and Windows: deployed Apache Tomcat with the Manager app and a live JSP application (WAR), stood up Microsoft IIS with multiple sites and bindings, built a Postfix + Dovecot Linux mail server, and promoted Windows Server 2022 to an Active Directory Domain Controller with DNS and NTP  with every incident below either unplanned or injected blind, then diagnosed from logs.</p>
+
+            <div class="incident">
+              <h4><span class="sev">INCIDENT</span> · Tomcat JVM version failure</h4>
+              <p>A freshly deployed WAR returned HTTP 500  UnsupportedClassVersionError. Translated class-file versions to Java releases (Tomcat's JSP compiler needed Java 21; only 17 was installed), installed the JDK, and when the fix still failed, re-verified the filesystem instead of re-trusting the config  catching that the first install had silently failed.</p>
+            </div>
+            <div class="incident">
+              <h4><span class="sev">INCIDENT</span> · Mail delivery four-layer cascade</h4>
+              <p>"Client inbox shows empty but mail sends fine." Diagnosed four stacked causes in sequence: a Dovecot 2.4 breaking config change (mail_location removed), a duplicate definition silently overriding the fix (caught via doveconf -n), an mbox file-vs-directory path mismatch, and a missing mail-group permission  each verified against live state, tested as the affected user rather than root.</p>
+            </div>
+            <div class="incident">
+              <h4><span class="sev">INCIDENT</span> · IIS port binding conflict</h4>
+              <p>Two IIS sites bound to the same port  IIS quietly refused to start the second, no crash, no error log. Diagnosed via appcmd list site after Get-NetTCPConnection only showed PID 4 (http.sys kernel ownership), a Windows-specific architecture difference from Linux port diagnosis with ss -tlnp.</p>
+            </div>
+          </div>
+        </div>
+
       </div>
-      <div class="incident">
-        <h4><span class="sev">INCIDENT</span> · No route to network</h4>
-        <p>Fresh Ubuntu VM had an IP but no connectivity. Ruled out DNS, traced a missing default route to a hardcoded static IP in the installer-generated netplan config on the wrong subnet — plus a file-permission issue silently blocking the fix. Corrected to DHCP, validated the gateway, and documented the incident as a runbook.</p>
+    </div>
+
+    <div class="car-nav">
+      <button class="car-btn" id="carPrev" aria-label="Previous project">‹</button>
+      <div class="car-dots" role="tablist" aria-label="Project slides">
+        <button class="car-dot" aria-label="Project 1: Monitoring and Container Lab" aria-current="true"></button>
+        <button class="car-dot" aria-label="Project 2: Application Servers, Mail and Windows Server Lab" aria-current="false"></button>
       </div>
-      <div class="incident">
-        <h4><span class="sev">INCIDENT</span> · Config failures across three layers</h4>
-        <p>Deliberately broke and diagnosed nginx configs on bare metal and inside Docker containers, PostgreSQL authentication rules (pg_hba.conf), and Prometheus YAML — using each tool's own validator (nginx&nbsp;-t, promtool, kubectl describe) cross-checked against logs. Same hypothesis-driven method, three different environment layers.</p>
-      </div>
+      <button class="car-btn" id="carNext" aria-label="Next project">›</button>
     </div>
   </div>
 </section>
@@ -389,6 +449,36 @@ footer{padding:34px 0;text-align:center;font-family:var(--mono);font-size:.75rem
       try { localStorage.setItem('theme', isDark ? 'light' : 'dark'); } catch(e) {}
     });
   }
+})();
+
+(function(){
+  var track = document.getElementById('carTrack');
+  if (!track) return;
+  var slides = track.children.length;
+  var idx = 0;
+  var dots = Array.prototype.slice.call(document.querySelectorAll('.car-dot'));
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var timer = null;
+
+  function go(i){
+    idx = (i + slides) % slides;
+    track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+    dots.forEach(function(d, n){ d.setAttribute('aria-current', n === idx ? 'true' : 'false'); });
+  }
+  function stop(){ if (timer) { clearInterval(timer); timer = null; } }
+  function start(){ if (reduced || timer) return; timer = setInterval(function(){ go(idx + 1); }, 8000); }
+
+  document.getElementById('carPrev').addEventListener('click', function(){ go(idx - 1); stop(); });
+  document.getElementById('carNext').addEventListener('click', function(){ go(idx + 1); stop(); });
+  dots.forEach(function(d, n){ d.addEventListener('click', function(){ go(n); stop(); }); });
+
+  var sec = document.getElementById('projects');
+  sec.addEventListener('mouseenter', stop);
+  sec.addEventListener('mouseleave', start);
+  sec.addEventListener('focusin', stop);
+
+  go(0);
+  start();
 })();
 </script>
 
