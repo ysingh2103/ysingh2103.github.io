@@ -184,6 +184,30 @@ footer{padding:34px 0;text-align:center;font-family:var(--mono);font-size:.75rem
   .contact-card{padding:34px 22px}
   .proj-card{padding:22px 18px}
 }
+/* Synapse links: a slice of the Synapse universe, same in light and dark */
+.nav-links a.nav-synapse{color:#D97757;font-weight:600}
+.nav-links a.nav-synapse:hover{color:#E3825F}
+.btn-synapse{background:#D97757;color:#fff;border-color:#D97757}
+.btn-synapse:hover{background:#E3825F;text-decoration:none}
+.synapse-cta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 32px;margin-top:36px;padding:30px 32px;border-radius:14px;color:#F0EEE6;text-decoration:none;border:1px solid rgba(217,119,87,.35);
+  background:
+    radial-gradient(1.2px 1.2px at 12% 30%,#fff 50%,transparent 51%),
+    radial-gradient(1px 1px at 28% 78%,#f0eee6 50%,transparent 51%),
+    radial-gradient(1.4px 1.4px at 46% 18%,#ffd9c2 50%,transparent 51%),
+    radial-gradient(1px 1px at 63% 64%,#fff 50%,transparent 51%),
+    radial-gradient(1.2px 1.2px at 81% 26%,#f0eee6 50%,transparent 51%),
+    radial-gradient(1px 1px at 92% 82%,#fff 50%,transparent 51%),
+    radial-gradient(60% 120% at 85% 0%,rgba(98,54,140,.55),transparent 70%),
+    radial-gradient(50% 120% at 10% 100%,rgba(217,119,87,.28),transparent 70%),
+    #05060C;
+  transition:transform .25s ease,box-shadow .25s ease}
+.synapse-cta:hover{text-decoration:none;transform:translateY(-2px);box-shadow:0 18px 40px -18px rgba(217,119,87,.7)}
+.synapse-cta>div{min-width:0;flex:1 1 320px}
+.synapse-kicker{font-family:var(--mono);font-size:.78rem;font-weight:600;color:#F0A47A}
+.synapse-cta h3{font-family:var(--disp);font-weight:700;font-stretch:85%;font-size:1.45rem;margin:6px 0 8px;color:#F0EEE6}
+.synapse-cta p{color:#C9C3B8;max-width:60ch;margin:0}
+.synapse-go{flex:none;padding:12px 20px;border-radius:999px;background:#D97757;color:#fff;font-weight:700;font-size:.95rem}
+@media (prefers-reduced-motion:reduce){.synapse-cta{transition:none}.synapse-cta:hover{transform:none}}
 </style>
 </head>
 <body>
@@ -197,6 +221,7 @@ footer{padding:34px 0;text-align:center;font-family:var(--mono);font-size:.75rem
         <a href="#skills">Skills</a>
         <a href="#experience">Experience</a>
         <a href="#projects">Lab &amp; Projects</a>
+        <a class="nav-synapse" href="https://ysingh2103.github.io/starforge/" target="_blank" rel="noopener">Synapse ↗</a>
         <a href="#contact">Contact</a>
       </div>
       <button class="theme-toggle" id="themeToggle" aria-label="Switch between light and dark mode" title="Toggle theme">
@@ -215,6 +240,7 @@ footer{padding:34px 0;text-align:center;font-family:var(--mono);font-size:.75rem
       <p class="hero-sub">Technical Support Specialist at a Canadian MSP diagnosing escalated issues across Windows, Linux, networks, and web platforms for 350+ users at 15+ client organizations.</p>
       <div class="hero-cta">
         <a class="btn btn-dark" href="#projects">See my troubleshooting work</a>
+        <a class="btn btn-synapse" href="https://ysingh2103.github.io/starforge/" target="_blank" rel="noopener">Explore Synapse</a>
         <a class="btn btn-ghost" href="https://linkedin.com/in/y-singh-gill" target="_blank" rel="noopener">LinkedIn</a>
         <a class="btn btn-ghost" href="https://github.com/ysingh2103" target="_blank" rel="noopener">GitHub</a>
       </div>
@@ -411,6 +437,15 @@ footer{padding:34px 0;text-align:center;font-family:var(--mono);font-size:.75rem
       </div>
       <button class="car-btn" id="carNext" aria-label="Next project">›</button>
     </div>
+
+    <a class="synapse-cta" href="https://ysingh2103.github.io/starforge/" target="_blank" rel="noopener">
+      <div>
+        <span class="synapse-kicker">## synapse</span>
+        <h3>Every project I've built, in one place</h3>
+        <p>Synapse is my project network: a live 3D neural network that maps my skills to everything I've made, with the code and live demo for each project.</p>
+      </div>
+      <span class="synapse-go">Open Synapse ↗</span>
+    </a>
   </div>
 </section>
 
