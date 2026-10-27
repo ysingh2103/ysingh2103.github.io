@@ -184,30 +184,36 @@ footer{padding:34px 0;text-align:center;font-family:var(--mono);font-size:.75rem
   .contact-card{padding:34px 22px}
   .proj-card{padding:22px 18px}
 }
-/* Synapse links: a slice of the Synapse universe, same in light and dark */
-.nav-links a.nav-synapse{color:#D97757;font-weight:600}
-.nav-links a.nav-synapse:hover{color:#E3825F}
-.btn-synapse{background:#D97757;color:#fff;border-color:#D97757}
-.btn-synapse:hover{background:#E3825F;text-decoration:none}
-.synapse-cta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 32px;margin-top:36px;padding:30px 32px;border-radius:14px;color:#F0EEE6;text-decoration:none;border:1px solid rgba(217,119,87,.35);
+/* Synapse links, styled like Synapse itself: black, white and a violet accent */
+.nav-links a.nav-synapse{color:#8B5CF6;font-weight:600}
+.nav-links a.nav-synapse:hover{color:#7C3AED}
+html[data-theme="dark"] .nav-links a.nav-synapse{color:#B9A3FF}
+.btn-synapse{background:#000;color:#fff;border-color:#000;box-shadow:inset 0 0 0 1px rgba(139,92,246,.5)}
+.btn-synapse:hover{background:#111;text-decoration:none}
+html[data-theme="dark"] .btn-synapse{background:#000;color:#fff;border-color:#000;box-shadow:inset 0 0 0 1px rgba(185,163,255,.55)}
+html[data-theme="dark"] .btn-synapse:hover{background:#0d0d0d}
+.synapse-cta{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);align-items:center;gap:24px 36px;margin-top:36px;padding:32px;border-radius:14px;color:#EDEDED;text-decoration:none;border:1px solid #2E2E2E;overflow:hidden;
   background:
-    radial-gradient(1.2px 1.2px at 12% 30%,#fff 50%,transparent 51%),
-    radial-gradient(1px 1px at 28% 78%,#f0eee6 50%,transparent 51%),
-    radial-gradient(1.4px 1.4px at 46% 18%,#ffd9c2 50%,transparent 51%),
-    radial-gradient(1px 1px at 63% 64%,#fff 50%,transparent 51%),
-    radial-gradient(1.2px 1.2px at 81% 26%,#f0eee6 50%,transparent 51%),
-    radial-gradient(1px 1px at 92% 82%,#fff 50%,transparent 51%),
-    radial-gradient(60% 120% at 85% 0%,rgba(98,54,140,.55),transparent 70%),
-    radial-gradient(50% 120% at 10% 100%,rgba(217,119,87,.28),transparent 70%),
-    #05060C;
-  transition:transform .25s ease,box-shadow .25s ease}
-.synapse-cta:hover{text-decoration:none;transform:translateY(-2px);box-shadow:0 18px 40px -18px rgba(217,119,87,.7)}
-.synapse-cta>div{min-width:0;flex:1 1 320px}
-.synapse-kicker{font-family:var(--mono);font-size:.78rem;font-weight:600;color:#F0A47A}
-.synapse-cta h3{font-family:var(--disp);font-weight:700;font-stretch:85%;font-size:1.45rem;margin:6px 0 8px;color:#F0EEE6}
-.synapse-cta p{color:#C9C3B8;max-width:60ch;margin:0}
-.synapse-go{flex:none;padding:12px 20px;border-radius:999px;background:#D97757;color:#fff;font-weight:700;font-size:.95rem}
-@media (prefers-reduced-motion:reduce){.synapse-cta{transition:none}.synapse-cta:hover{transform:none}}
+    radial-gradient(60% 80% at 80% 0%,rgba(255,255,255,.10),transparent 70%),
+    radial-gradient(40% 60% at 85% 60%,rgba(139,92,246,.18),transparent 70%),
+    linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px) 0 0/40px 40px,
+    linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px) 0 0/40px 40px,
+    #000;
+  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.synapse-cta:hover{text-decoration:none;transform:translateY(-2px);border-color:rgba(139,92,246,.6);box-shadow:0 0 0 1px rgba(139,92,246,.2),0 20px 50px -24px rgba(139,92,246,.6)}
+.synapse-cta>div{min-width:0;display:grid;gap:10px;justify-items:start}
+.synapse-kicker{font-family:var(--mono);font-size:.74rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#A1A1A1}
+.synapse-cta h3{font-family:var(--disp);font-weight:700;font-stretch:85%;font-size:1.6rem;line-height:1.1;margin:0;color:#fff}
+.synapse-cta p{color:#A1A1A1;max-width:52ch;margin:0}
+.synapse-feats{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 6px}
+.synapse-feats span{font-family:var(--mono);font-size:.72rem;padding:5px 8px;border-radius:6px;border:1px solid #2E2E2E;background:#0A0A0A;color:#D4D4D4}
+.synapse-go{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:8px;background:#EDEDED;color:#000;font-weight:700;font-size:.95rem}
+.synapse-go::before{content:"";width:7px;height:7px;border-radius:50%;background:#8B5CF6;box-shadow:0 0 10px #8B5CF6}
+.synapse-shot{position:relative;min-width:0;border-radius:10px;overflow:hidden;border:1px solid #2E2E2E;aspect-ratio:16/10;max-width:100%;background:#0A0A0A}
+.synapse-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:left top;display:block;transition:transform .5s ease}
+.synapse-cta:hover .synapse-shot img{transform:scale(1.03)}
+@media (max-width:760px){.synapse-cta{grid-template-columns:minmax(0,1fr);padding:22px}}
+@media (prefers-reduced-motion:reduce){.synapse-cta,.synapse-shot img{transition:none}.synapse-cta:hover{transform:none}.synapse-cta:hover .synapse-shot img{transform:none}}
 </style>
 </head>
 <body>
@@ -440,11 +446,13 @@ footer{padding:34px 0;text-align:center;font-family:var(--mono);font-size:.75rem
 
     <a class="synapse-cta" href="https://ysingh2103.github.io/starforge/" target="_blank" rel="noopener">
       <div>
-        <span class="synapse-kicker">## synapse</span>
-        <h3>Every project I've built, in one place</h3>
-        <p>Synapse is my project network: a live 3D neural network that maps my skills to everything I've made, with the code and live demo for each project.</p>
+        <span class="synapse-kicker">Synapse · Systems &amp; Technology</span>
+        <h3>Connecting ideas. Building systems. Solving problems.</h3>
+        <p>A living map of everything I've built: an interactive 3D network that links my skills to my projects, with case studies, live demos and a hands-on incident simulator.</p>
+        <div class="synapse-feats"><span>3D skill network</span><span>5 case studies</span><span>Incident simulator</span><span>Live status</span></div>
+        <span class="synapse-go">Open Synapse ↗</span>
       </div>
-      <span class="synapse-go">Open Synapse ↗</span>
+      <div class="synapse-shot"><img src="https://ysingh2103.github.io/starforge/shots/synapse-hero.jpg" alt="The Synapse homepage: a black-and-white hero with a 3D neural network linking skills to projects" loading="lazy" width="1280" height="800"></div>
     </a>
   </div>
 </section>
