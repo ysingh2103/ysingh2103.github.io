@@ -693,12 +693,26 @@ const spin={},tilt={};
 /* lightning on the robot eye */
 let nextSpark=1800,sparkT=-1e4,bolts=[];
 const EYE_X=(294.2-265)/183.9,EYE_Y=(137.5-171)/183.9;
+/* face life: both eyes follow the cursor, and every few seconds an evil grin */
+const HEX=(211-265)/183.9,HEY=(137-171)/183.9,MCX=-.103,MLY=.31,SEAM=-.057;
+let gzx=0,gzy=0,smV=0,smT=-1e4,nextSmile=4200,fwx=0,fwy=0;
+const sstep=k=>k*k*(3-2*k);
+function faceWarp(x,y){fwx=0;fwy=0;
+  let dx=x-EYE_X,dy=y-EYE_Y;const r=Math.hypot(dx,dy);
+  if(r<.06){const f=r<.032?1:1-(r-.032)/.028;fwx+=gzx*.024*f;fwy+=gzy*.02*f;}
+  dx=x-HEX;dy=y-HEY;
+  if(Math.abs(dx)<.05&&Math.abs(dy)<.04){const r2=Math.hypot(dx,dy*1.3);if(r2<.042){const f=r2<.026?1:1-(r2-.026)/.016;fwx+=gzx*.018*f;fwy+=gzy*.009*f;}}
+  if(smV>.001){
+    if(y>.2&&y<.45&&Math.abs(x-SEAM)>.008){const u=(x-MCX)/.165,au=Math.abs(u);
+      if(au<1.4){const w=(au<1?1:1-(au-1)/.4)*Math.max(0,1-Math.abs(y-MLY)/.12)*smV;fwy+=(-(u*u)*(u<0?.08:.045)+.012)*w;fwx+=u*.018*w;}}
+    if(x>-.4&&x<-.13){if(y>-.33&&y<-.22)fwy+=smV*.016*Math.max(0,(x+.38)/.25);else if(y>-.165&&y<-.12)fwy-=smV*.007;}
+  }}
 function bolt(x,y,ang,len,depth){const pts=[[x,y]];let cx=x,cy=y;const segs=4+(Math.random()*2|0);for(let k=1;k<=segs;k++){const a=ang+(Math.random()-.5)*1.1;cx+=Math.cos(a)*len/segs;cy+=Math.sin(a)*len/segs;pts.push([cx,cy]);
   if(depth<1&&Math.random()<.22)bolts.push({p:bolt(cx,cy,ang+(Math.random()-.5)*1.6,len*.45,depth+1),w:.6});}return pts;}
 function eyeSpark(t,vis,sc,dy){dy=dy||0;if(t>nextSpark){sparkT=t;nextSpark=t+2200+Math.random()*2600;bolts=[];
     const n=3+(Math.random()*3|0),base=Math.random()*Math.PI*2;for(let k=0;k<n;k++){const ang=base+k*(Math.PI*2/n)+(Math.random()-.5)*.8,L=(14+Math.random()*18)*sc;bolts.push({p:bolt(0,0,ang,L,0),w:1});}}
   const age=t-sparkT;if(age>420)return;
-  const ex=W/2+EYE_X*sc*S,ey=H/2+EYE_Y*sc*S+dy*H/2,ind=css('--indigo-hi');
+  const ex=W/2+(EYE_X+gzx*.024)*sc*S,ey=H/2+(EYE_Y+gzy*.02)*sc*S+dy*H/2,ind=css('--indigo-hi');
   const flick=(age<60?1:age<120?.35:age<190?.9:age<260?.3:1-(age-260)/160)*vis;
   ctx.save();ctx.translate(ex,ey);ctx.lineJoin='round';ctx.lineCap='round';
   const g2=ctx.createRadialGradient(0,0,0,0,0,16*sc);g2.addColorStop(0,'rgba(255,255,255,.9)');g2.addColorStop(.25,ind);g2.addColorStop(1,'rgba(111,0,255,0)');
@@ -739,7 +753,7 @@ let mx=-1e4,my=-1e4,pmx=-1e4,pmy=-1e4,mvx=0,mvy=0,hoverUI=false;
 addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY;hoverUI=!!(e.target.closest&&e.target.closest('a,button,input,[role=button],.chip.has'));},{passive:true});
 addEventListener('pointerleave',()=>{mx=my=-1e4});document.addEventListener('mouseleave',()=>{mx=my=-1e4});
 let ox,oy;
-function proj(sh,i,t,dx,scale,dy){dy=dy||0;const s=shapes[sh];let x=s[i*3],y=s[i*3+1],z=s[i*3+2];oa=1;
+function proj(sh,i,t,dx,scale,dy){dy=dy||0;const s=shapes[sh];let x=s[i*3],y=s[i*3+1],z=s[i*3+2];oa=1;if(sh==='person'&&!reduce){faceWarp(x,y);x+=fwx;y+=fwy;}
   if(sh==='plug'){let X=x,Y=y;
     if(z===1)Y=y+plugOff;
     else if(z===2||z===4){let tt=y;if(z===4){tt=((y-flowT*.00035)%1+1)%1;oa=Math.min(1,tt/.12,(1-tt)/.12);}const top=.12+plugOff;Y=top+(.5-top)*tt;}
@@ -767,6 +781,13 @@ function frame(t){
   if(plugStart<0&&(A.shape==='plug'||(B.shape==='plug'&&e>.55)))plugStart=t;
   if(plugStart>=0){const pp=reduce?1:Math.min(1,(t-plugStart)/1000),q=pp-1,eb=1+2.4*q*q*q+1.4*q*q;plugOff=.34*(1-eb);if(pp>=1){plugOff=0;if(linkT<0)linkT=t;}}
   if(linkT>=0&&!reduce)flowT+=Math.min(50,Math.max(0,t-lastT));lastT=t;
+  {const pv=A.shape==='person'?1-e:(B.shape==='person'?e:0);
+    if(pv>.05&&!reduce){const ps=A.shape==='person'?sa:sb,py0=A.shape==='person'?ya:yb,ex=W/2+EYE_X*ps*S,ey=H/2+EYE_Y*ps*S+py0*H/2;
+      let tx=0,ty=0;if(mx>-1e3){const vx=mx-ex,vy=my-ey,l=Math.hypot(vx,vy);tx=vx/(l+220);ty=vy/(l+220);}
+      gzx+=(tx-gzx)*.12;gzy+=(ty-gzy)*.12;
+      if(t>nextSmile){smT=t;nextSmile=t+7500+Math.random()*5000;nextSpark=Math.min(nextSpark,t+650);}
+      const ag=t-smT;smV=ag<380?sstep(ag/380):ag<1700?1:ag<2200?1-sstep((ag-1700)/500):0;}
+    else smV=0;}
   ctx.clearRect(0,0,W,H);
   if(!reduce){ctx.strokeStyle=fg;ctx.lineWidth=1;ctx.globalAlpha=.06;ctx.beginPath();rain.forEach(r=>{r.y+=r.s;if(r.y>1.05){r.y=-.05;r.x=Math.random()}const x=r.x*W,y=r.y*H;ctx.moveTo(x,y);ctx.lineTo(x,y+r.l);});ctx.stroke();}
   for(let pass=0;pass<2;pass++){ctx.fillStyle=pass?ind:fg;
